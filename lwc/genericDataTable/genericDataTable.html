@@ -1,0 +1,69 @@
+<template>
+
+    <template if:false={relatedListParentRecordId}>
+        <div class="slds-text-heading_medium">{sObjectName} Records</div>
+        <br />
+    </template>
+
+    <template if:true={error}>
+        <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error">{error}</div>
+        <br />
+    </template>
+
+    <template if:true={dataLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+
+    <div>
+
+        <template if:false={hideSearchBar}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-3">
+                    <div onkeyup={handleDataFilter}>
+                        <lightning-input name="enter-search" label="Search in records data..." type="search">
+                        </lightning-input>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <br />
+
+        <template if:true={relatedListParentRecordId}>
+            <lightning-combobox disabled={disableCombobox} label="Record's Related List"
+                value={childObjectSelectionValue} placeholder="Select Object" options={childObjectOptions}
+                onchange={handleChildObjectSelection}>
+            </lightning-combobox>
+            <br />
+        </template>
+
+        <lightning-datatable show-row-number-column={showRowNumberColumn} hide-checkbox-column={hideCheckboxColumn}
+            key-field="id" onsort={handleOnSort} sorted-by={sortBy} sorted-direction={sortDirection}
+            row-number-offset={rowNumberOffset} data={loadedData} columns={displayColumns}>
+        </lightning-datatable>
+
+        <br />
+        <div class="slds-align_absolute-center">
+            <template if:true={paginationEnabled}>
+                <lightning-button variant="brand-outline" label="Previous" title="Previous" onclick={handlePrevious}
+                    class="slds-m-left_x-small" disabled={disablePreviousButton}></lightning-button>
+                <lightning-button variant="brand-outline" label="Next" title="Next" onclick={handleNext}
+                    class="slds-m-left_x-small" disabled={disableNextButton}></lightning-button>
+            </template>
+        </div>
+
+        <div class="slds-align_absolute-center">
+            <template if:true={lazyLoadingEnabled}>
+                <template if:false={paginationEnabled}>
+                    <br />
+                    <lightning-button variant="brand-outline" label="Load More" title="Load More"
+                        onclick={handleLoadMore} disabled={disableLoadMoreButton} class="slds-m-left_x-small">
+                    </lightning-button>
+                </template>
+            </template>
+        </div>
+        <br />
+
+    </div>
+
+</template>

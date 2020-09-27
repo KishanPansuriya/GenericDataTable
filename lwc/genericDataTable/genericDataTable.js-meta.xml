@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>genericDataTable</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__Tab</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default, lightning__RecordPage, lightning__AppPage, lightning__HomePage">
+            <property name="sObjectName" type="String"/>
+            <property name="displayColumns" type="String"/>
+            <property name="tableHeight" type="Integer"/>
+            <property name="tableWidth" type="Integer"/>
+            <property name="maximumNumberOfRecords" type="Integer"/>
+            <property name="paginationEnabled" type="Boolean"/>
+            <property name="lazyLoadingEnabled" type="Boolean"/>
+            <property name="paginationRecordsPerStep" type="Integer"/>
+            <property name="relatedListParentRecordId" type="String"/>
+            <property name="hideCheckboxColumn" type="Boolean"/>
+            <property name="showRowNumberColumn" type="Boolean"/>
+            <property name="hideSearchBar" type="Boolean"/>
+            <property name="sortBy" type="String"/>
+            <property name="sortDirection" type="String"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
